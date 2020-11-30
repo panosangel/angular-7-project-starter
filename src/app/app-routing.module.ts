@@ -5,6 +5,11 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: './modules/todo/todo.module#TodoModule'
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
 
