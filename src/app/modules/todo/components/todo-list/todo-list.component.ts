@@ -26,7 +26,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
       store.select(selectTodoList).subscribe(todos => {
         if (todos != null) {
           this.todos = todos;
-          this.pagination = new Pagination({totalElements: todos.length});
+          this.pagination = new Pagination({...this.pagination, totalElements: todos.length});
           this.displayTodos = this.updateDisplayList(this.pagination);
         }
       })
@@ -34,7 +34,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(new todoActions.GetListRequest());
   }
 
   ngOnDestroy() {
@@ -49,7 +48,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   onPageSizeChange($size) {
     this.pagination = new Pagination({
-        totalElements: this.todos.length,
+        ...this.pagination,
+        currentPage: 0,
         pageSize: parseInt($size, 10)
       }
     );
@@ -58,11 +58,10 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   onPageChange(page: number) {
     const pageSize = this.pagination.pageSize;
-    const totalElements = this.todos.length;
     const currentPage = Number(page);
     this.pagination = new Pagination(
       {
-        totalElements,
+        ...this.pagination,
         pageSize,
         currentPage,
       }
