@@ -17,4 +17,8 @@ export class TodoService {
   getTodos() {
     return this.httpClient.get<Todo[]>(this.baseUrl);
   }
+
+  deleteTodoById(id: number) {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
+  }
 }
