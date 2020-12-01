@@ -13,6 +13,13 @@ export function todoReducer(state = initialState, action: todoActions.TodoAction
         list: action.todos
       };
     }
+
+    case todoActions.DELETE_TODO_RESPONSE: {
+      return {
+        ...state,
+        list: state.list.filter(item => item.id !== action.todoId)
+      };
+    }
   }
   return state;
 }
