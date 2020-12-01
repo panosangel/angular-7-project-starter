@@ -25,4 +25,17 @@ export class TodoEffects {
         );
     })
   );
+
+  @Effect()
+  deleteTodo = this.actions$.pipe(
+    ofType(todoActions.DELETE_TODO_REQUEST),
+    switchMap((action: todoActions.DeleteTodoRequest) => {
+      return this.todoService.deleteTodoById(action.todoId)
+        .pipe(
+          switchMap(res => ([
+            new todoActions.DeleteTodoResponse()
+          ]))
+        );
+    })
+  );
 }
