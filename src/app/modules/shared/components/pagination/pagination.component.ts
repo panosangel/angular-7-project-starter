@@ -33,4 +33,12 @@ export class PaginationComponent implements OnInit, OnChanges {
     this.pageChanged.emit(page);
   }
 
+  nextClicked() {
+    this.pageChanged.emit(this.pagination.currentPage + 1);
+  }
+
+  previousClicked() {
+    this.pageChanged.emit(this.pagination.currentPage - 1);
+  }
+
 }

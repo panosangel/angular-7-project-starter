@@ -1,7 +1,7 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item" *ngIf="hasPreviousPage()">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      <a class="page-link" tabindex="-1" aria-disabled="true" (click)="previousClicked()">Previous</a>
     </li>
     <li
       class="page-item"
@@ -12,7 +12,7 @@
     </li>
 
     <li class="page-item" *ngIf="hasNextPage()">
-      <a class="page-link" href="#">Next</a>
+      <a class="page-link" (click)="nextClicked()">Next</a>
     </li>
   </ul>
 </nav>
