@@ -33,7 +33,7 @@ export class TodoEffects {
       return this.todoService.deleteTodoById(action.todoId)
         .pipe(
           switchMap(res => ([
-            new todoActions.DeleteTodoResponse()
+            new todoActions.DeleteTodoResponse(action.todoId)
           ]))
         );
     })

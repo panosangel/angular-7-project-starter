@@ -28,6 +28,9 @@ export class DeleteTodoRequest implements Action {
 
 export class DeleteTodoResponse implements Action {
   readonly type = DELETE_TODO_RESPONSE;
+
+  constructor(public todoId: number) {
+  }
 }
 
 export class RequestFailure implements Action {
