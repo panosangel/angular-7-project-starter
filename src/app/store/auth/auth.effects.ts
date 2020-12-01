@@ -7,6 +7,7 @@ import {Store} from '@ngrx/store';
 import {AuthService} from '../../modules/auth/service/auth.service';
 import * as authActions from './auth.actions';
 import {AppState} from '../state.model';
+import {of} from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
@@ -24,10 +25,14 @@ export class AuthEffects {
     switchMap((action: authActions.LoginRequest) => {
       return this.authService.login(action.request)
         .pipe(
-          switchMap(res => ([
+          switchMap(res => {
+            if (!res) {
+              throw new Error('Busted!!');
+            }
+            return of(
               new authActions.LoginSuccess()
-            ])
-          ),
+            );
+          }),
           catchError((reject) => ([
             new authActions.LoginFailure()
           ]))
