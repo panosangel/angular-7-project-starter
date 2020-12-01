@@ -7,7 +7,7 @@ const initialState: AuthState = {
 
 export function authReducer(state = initialState, action: authActions.AuthActions) {
   switch (action.type) {
-    case authActions.LOGIN_RESPONSE: {
+    case authActions.LOGIN_SUCCESS: {
       return {
         ...state,
         isLoggedIn: true
