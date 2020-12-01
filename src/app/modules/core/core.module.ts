@@ -6,6 +6,7 @@ import {RootEffectsModule, RootReducerModule} from '../../store/state.module';
 import {environment} from '../../../environments/environment';
 import {TodoService} from '../todo/service/todo.service';
 import {SharedModule} from '../shared/shared.module';
+import {AuthService} from '../auth/service/auth.service';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import {SharedModule} from '../shared/shared.module';
   ],
   providers: [
     TodoService,
+    AuthService,
   ],
 })
 export class CoreModule { }
