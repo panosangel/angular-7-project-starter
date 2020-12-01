@@ -1,0 +1,18 @@
+<nav aria-label="Shared pagination component">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" *ngIf="hasPreviousPage()">
+      <a class="page-link" tabindex="-1" aria-disabled="true" (click)="previousClicked()">Previous</a>
+    </li>
+    <li
+      class="page-item"
+      *ngFor="let page of pagination.pageList()"
+      [class.active]="page === pagination.currentPage"
+    >
+      <a class="page-link" (click)="buttonClicked(page)">{{page +1}}</a>
+    </li>
+
+    <li class="page-item" *ngIf="hasNextPage()">
+      <a class="page-link" (click)="nextClicked()">Next</a>
+    </li>
+  </ul>
+</nav>
