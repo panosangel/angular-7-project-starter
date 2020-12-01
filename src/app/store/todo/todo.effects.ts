@@ -32,6 +32,32 @@ export class TodoEffects {
   );
 
   @Effect()
+  getTodo = this.actions$.pipe(
+    ofType(todoActions.GET_TODO_REQUEST),
+    switchMap((action: todoActions.GetTodoRequest) => {
+      // Due to inconsistencies with locally altered elements we mock the response
+      const elementList$ = this.store.select(selectTodoList);
+      let mockedElement;
+      elementList$.subscribe(todos => {
+        mockedElement = todos.filter(element => {
+          return element.id === action.todoId;
+        })[0];
+      });
+      return this.todoService.getTodoById(action.todoId)
+        .pipe(
+          switchMap((todo) => {
+            return from([
+              new todoActions.GetTodoResponse(mockedElement)
+            ]);
+          })
+        );
+    }),
+    catchError((reject) => ([
+      new todoActions.RequestFailure()
+    ]))
+  );
+
+  @Effect()
   deleteTodo = this.actions$.pipe(
     ofType(todoActions.DELETE_TODO_REQUEST),
     switchMap((action: todoActions.DeleteTodoRequest) => {
