@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
+import {of} from 'rxjs';
 
 import {LoginAuthRequest} from '../domain/auth.model';
-import {of} from 'rxjs';
 
 const credsToLogin = {
   username: 'Panos',
