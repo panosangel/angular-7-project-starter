@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: './modules/todo/todo.module#TodoModule'
   },
   {
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
