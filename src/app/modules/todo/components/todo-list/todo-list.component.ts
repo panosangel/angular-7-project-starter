@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 
 import {selectTodoList} from '../../../../store/todo/todo.selector';
-import {GetListRequest} from '../../../../store/todo/todo.actions';
+import * as todoActions from '../../../../store/todo/todo.actions';
 import {Pagination} from '../../../shared/domain/pagination.model';
 import {AppState} from '../../../../store/state.model';
 import {Todo} from '../../domain/todo.model';
@@ -34,7 +34,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(new GetListRequest());
+    this.store.dispatch(new todoActions.GetListRequest());
   }
 
   ngOnDestroy() {
@@ -68,6 +68,11 @@ export class TodoListComponent implements OnInit, OnDestroy {
       }
     );
     this.displayTodos = this.updateDisplayList(this.pagination);
+  }
+
+  deleteElement(elementId: number) {
+    this.store.dispatch(new todoActions.DeleteTodoRequest(elementId));
+    console.log('Delete: ' + elementId);
   }
 
 }

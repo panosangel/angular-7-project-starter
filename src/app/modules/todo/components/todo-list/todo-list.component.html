@@ -37,6 +37,9 @@
         <input class="form-check-input" type="checkbox" value="" disabled [checked]="todo.completed">
       </div>
     </td>
+    <td>
+      <button type="button" class="btn btn-danger" (click)="deleteElement(todo.id)">Delete</button>
+    </td>
   </tr>
   </tbody>
 </table>
