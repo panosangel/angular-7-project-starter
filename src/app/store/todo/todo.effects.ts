@@ -1,13 +1,18 @@
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {switchMap} from 'rxjs/operators';
+import {catchError, switchMap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
+import {Store} from '@ngrx/store';
 
 import {TodoService} from '../../modules/todo/service/todo.service';
 import * as todoActions from './todo.actions';
+import {AppState} from '../state.model';
+import {selectTodoList} from './todo.selector';
+import {from} from 'rxjs';
 
 @Injectable()
 export class TodoEffects {
   constructor(
+    private store: Store<AppState>,
     private actions$: Actions,
     private todoService: TodoService,
   ) {
@@ -36,6 +41,9 @@ export class TodoEffects {
             new todoActions.DeleteTodoResponse(action.todoId)
           ]))
         );
-    })
+    }),
+    catchError((reject) => ([
+      new todoActions.RequestFailure()
+    ]))
   );
 }
