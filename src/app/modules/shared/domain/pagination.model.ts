@@ -9,13 +9,13 @@ export class Pagination {
     this.maxPage = this.calculateMaxPage(this.totalElements, this.pageSize);
   }
 
- pageList() {
+  calculateMaxPage(totalElements, pageSize) {
+    return Math.ceil(totalElements / pageSize);
+  }
+
+  pageList() {
     if (this.maxPage) {
       return Array.from(Array(this.maxPage).keys());
     }
-  }
-
-  calculateMaxPage(totalElements, pageSize) {
-    return Math.ceil(totalElements / pageSize);
   }
 }

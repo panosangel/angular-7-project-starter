@@ -27,7 +27,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
         if (todos != null) {
           this.todos = todos;
           this.pagination = new Pagination({totalElements: todos.length});
-          this.updateDisplayList();
+          this.displayTodos = this.updateDisplayList(this.pagination);
         }
       })
     );
@@ -41,13 +41,33 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  updateDisplayList() {
-    const firstElement = (this.pagination.currentPage) * this.pagination.pageSize;
-    const lastElement = firstElement + this.pagination.pageSize;
-    this.displayTodos = this.todos.slice(firstElement, lastElement);
+  updateDisplayList(pagination: Pagination) {
+    const firstElement = (pagination.currentPage) * pagination.pageSize;
+    const lastElement = firstElement + pagination.pageSize;
+    return this.todos.slice(firstElement, lastElement);
   }
 
-  onPageSizeChange() {
-    this.updateDisplayList();
+  onPageSizeChange($size) {
+    this.pagination = new Pagination({
+        totalElements: this.todos.length,
+        pageSize: parseInt($size, 10)
+      }
+    );
+    this.displayTodos = this.updateDisplayList(this.pagination);
   }
+
+  onPageChange(page: number) {
+    const pageSize = this.pagination.pageSize;
+    const totalElements = this.todos.length;
+    const currentPage = Number(page);
+    this.pagination = new Pagination(
+      {
+        totalElements,
+        pageSize,
+        currentPage,
+      }
+    );
+    this.displayTodos = this.updateDisplayList(this.pagination);
+  }
+
 }
