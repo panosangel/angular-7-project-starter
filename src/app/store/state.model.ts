@@ -6,4 +6,5 @@ export interface AppState {
 
 export interface TodoState {
   list: Todo[];
+  currentElement: Todo;
 }

@@ -3,6 +3,7 @@ import * as todoActions from './todo.actions';
 
 const initialState: TodoState = {
   list: [],
+  currentElement: null,
 };
 
 export function todoReducer(state = initialState, action: todoActions.TodoActions) {
@@ -11,6 +12,13 @@ export function todoReducer(state = initialState, action: todoActions.TodoAction
       return {
         ...state,
         list: action.todos
+      };
+    }
+
+    case todoActions.GET_TODO_RESPONSE: {
+      return {
+        ...state,
+        currentElement: action.todo
       };
     }
 
