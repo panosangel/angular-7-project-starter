@@ -8,6 +8,7 @@ export const GET_TODO_REQUEST = '[Todo] GetTodoRequest';
 export const GET_TODO_RESPONSE = '[Todo] GetTodoResponse';
 export const DELETE_TODO_REQUEST = '[Todo] DeleteTodoRequest';
 export const DELETE_TODO_RESPONSE = '[Todo] DeleteTodoResponse';
+export const CLEAR_CURRENT_TODO = '[Todo] ClearCurrentTodo';
 export const REQUEST_FAILURE = '[Todo] RequestFailure';
 
 export class GetListRequest implements Action {
@@ -49,6 +50,10 @@ export class DeleteTodoResponse implements Action {
   }
 }
 
+export class ClearCurrentTodo implements Action {
+  readonly type = CLEAR_CURRENT_TODO;
+}
+
 export class RequestFailure implements Action {
   readonly type = REQUEST_FAILURE;
 }
@@ -59,4 +64,5 @@ export type TodoActions = GetListRequest
   | GetTodoResponse
   | DeleteTodoRequest
   | DeleteTodoResponse
+  | ClearCurrentTodo
   | RequestFailure;

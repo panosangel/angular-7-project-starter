@@ -28,6 +28,13 @@ export function todoReducer(state = initialState, action: todoActions.TodoAction
         list: state.list.filter(item => item.id !== action.todoId)
       };
     }
+
+    case todoActions.CLEAR_CURRENT_TODO: {
+      return {
+        ...state,
+        currentElement: null
+      };
+    }
   }
   return state;
 }
