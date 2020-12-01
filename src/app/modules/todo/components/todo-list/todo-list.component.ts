@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AppState} from '../../../../store/state.model';
 import {Store} from '@ngrx/store';
 
-import {GetListRequest} from '../../../../store/todo/todo.actions';
 import {selectTodoList} from '../../../../store/todo/todo.selector';
+import {GetListRequest} from '../../../../store/todo/todo.actions';
+import {Pagination} from '../../../shared/domain/pagination.model';
+import {AppState} from '../../../../store/state.model';
 import {Todo} from '../../domain/todo.model';
 
 @Component({
@@ -13,7 +14,10 @@ import {Todo} from '../../domain/todo.model';
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   private subscriptions = [];
+
   todos: Todo[] = [];
+  displayTodos: Todo[] = [];
+  pagination: Pagination = new Pagination();
 
   constructor(
     protected store: Store<AppState>
@@ -22,6 +26,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
       store.select(selectTodoList).subscribe(todos => {
         if (todos != null) {
           this.todos = todos;
+          this.pagination = new Pagination({totalElements: todos.length});
+          this.updateDisplayList();
         }
       })
     );
@@ -35,4 +41,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  updateDisplayList() {
+    const firstElement = (this.pagination.currentPage) * this.pagination.pageSize;
+    const lastElement = firstElement + this.pagination.pageSize;
+    this.displayTodos = this.todos.slice(firstElement, lastElement);
+  }
+
+  onPageSizeChange() {
+    this.updateDisplayList();
+  }
 }
