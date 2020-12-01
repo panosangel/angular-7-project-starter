@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 
 import {selectTodoList} from '../../../../store/todo/todo.selector';
@@ -20,7 +21,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
   pagination: Pagination = new Pagination();
 
   constructor(
-    protected store: Store<AppState>
+    protected store: Store<AppState>,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.subscriptions.push(
       store.select(selectTodoList).subscribe(todos => {
@@ -69,9 +72,12 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.displayTodos = this.updateDisplayList(this.pagination);
   }
 
+  showElement(elementId: number) {
+    this.router.navigate([elementId], {relativeTo: this.route});
+  }
+
   deleteElement(elementId: number) {
     this.store.dispatch(new todoActions.DeleteTodoRequest(elementId));
-    console.log('Delete: ' + elementId);
   }
 
 }
