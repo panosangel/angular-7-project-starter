@@ -1,6 +1,7 @@
 import {catchError, switchMap, tap} from 'rxjs/operators';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 
 import {AuthService} from '../../modules/auth/service/auth.service';
@@ -13,6 +14,7 @@ export class AuthEffects {
     private store: Store<AppState>,
     private actions$: Actions,
     private authService: AuthService,
+    private router: Router,
   ) {
   }
 
@@ -34,5 +36,13 @@ export class AuthEffects {
     catchError((reject) => ([
       new authActions.RequestFailure()
     ]))
+  );
+
+  @Effect({dispatch: false})
+  authSuccess = this.actions$.pipe(
+    ofType(authActions.LOGIN_SUCCESS),
+    tap(() => {
+      this.router.navigate(['/']);
+    })
   );
 }
