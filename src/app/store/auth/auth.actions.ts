@@ -3,9 +3,9 @@ import {Action} from '@ngrx/store';
 import {LoginAuthRequest} from '../../modules/auth/domain/auth.model';
 
 export const LOGIN_REQUEST = '[Auth] LoginRequest';
-export const LOGIN_RESPONSE = '[Auth] LoginResponse';
+export const LOGIN_SUCCESS = '[Auth] LoginSuccess';
+export const LOGIN_FAILURE = '[Auth] LoginFailure';
 export const REQUEST_FAILURE = '[Auth] RequestFailure';
-
 
 export class LoginRequest implements Action {
   readonly type = LOGIN_REQUEST;
@@ -14,11 +14,12 @@ export class LoginRequest implements Action {
   }
 }
 
-export class LoginResponse implements Action {
-  readonly type = LOGIN_RESPONSE;
+export class LoginSuccess implements Action {
+  readonly type = LOGIN_SUCCESS;
+}
 
-  constructor(public response: any) {
-  }
+export class LoginFailure implements Action {
+  readonly type = LOGIN_FAILURE;
 }
 
 export class RequestFailure implements Action {
@@ -26,5 +27,6 @@ export class RequestFailure implements Action {
 }
 
 export type AuthActions = LoginRequest
-  | LoginResponse
+  | LoginSuccess
+  | LoginFailure
   | RequestFailure;
