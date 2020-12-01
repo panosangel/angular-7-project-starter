@@ -1,5 +1,5 @@
+import {catchError, switchMap, tap} from 'rxjs/operators';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {catchError, switchMap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 
@@ -23,7 +23,11 @@ export class AuthEffects {
       return this.authService.login(action.request)
         .pipe(
           switchMap(res => ([
-            new authActions.LoginResponse(res)
+              new authActions.LoginSuccess()
+            ])
+          ),
+          catchError((reject) => ([
+            new authActions.LoginFailure()
           ]))
         );
     }),
