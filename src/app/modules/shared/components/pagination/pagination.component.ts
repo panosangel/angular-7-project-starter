@@ -18,6 +18,7 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    // todo: remove
     console.log(this.pagination);
   }
 
