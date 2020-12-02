@@ -1,27 +1,29 @@
-# Angular7ProjectStarter
+# Angular 7 Project Starter
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run the project with `npm start`
 
-## Code scaffolding
+## API
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+BaseUrl: https://jsonplaceholder.typicode.com
 
-## Build
+| Method  | Resource         | Comments
+| ---     | ---              | ---
+| GET     | /todos           |
+| GET     | /todos/:todoId   | Mocked
+| POST    | /todos           |
+| PUT     | /todos/:todoId   | Mocked
+| DELETE  | /todos/:todoId   |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The free `jsonplaceholder` service does not support for remote alteration of the data, as expected.
+  
+As a result, querying id's (`GET /todos/:todoId`) _over_ the range of [1-200] returns 404. Also, calls  _in_ the range return the original item and not the locally altered one.  
 
-## Running unit tests
+For that reason some services are mocked as noted in the comments of the table above to avoid inconsistencies.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Caution:** The returned object has always id n+1 from the initial list and in that case it's always 201 no matter how many new entries we have. 
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
