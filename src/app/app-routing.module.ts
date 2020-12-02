@@ -1,19 +1,28 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
+import {AuthGuard} from './modules/auth/guards/auth.guard';
+
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: './modules/todo/todo.module#TodoModule'
-  },
+
   {
     path: 'auth',
     loadChildren: './modules/auth/auth.module#AuthModule'
   },
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'home',
+        loadChildren: './modules/todo/todo.module#TodoModule',
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      }
+    ]
   }
 ];
 
@@ -24,6 +33,9 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
+  providers: [
+    AuthGuard,
+  ]
 })
 export class AppRoutingModule {
 }
