@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {Store} from '@ngrx/store';
 
+import * as todoActions from '../../../../store/todo/todo.actions';
 import {AppState} from '../../../../store/state.model';
 import {Todo} from '../../domain/todo.model';
-import * as todoActions from '../../../../store/todo/todo.actions';
 
 @Component({
   selector: 'app-todo-add-element',
@@ -15,6 +16,8 @@ export class TodoAddElementComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
   }
 
@@ -29,6 +32,10 @@ export class TodoAddElementComponent implements OnInit {
       checked: form.value.checked,
     });
     this.store.dispatch(new todoActions.AddTodoRequest(req));
+  }
+
+  goToList() {
+    this.router.navigate(['..'], {relativeTo: this.route});
   }
 
 }
