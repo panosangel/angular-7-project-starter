@@ -7,6 +7,7 @@ import {TodoBaseComponent} from './components/todo-base/todo-base.component';
 import {TodoListComponent} from './components/todo-list/todo-list.component';
 import {TodoElementResolver} from './resolver/todo-element.resolver';
 import {TodoListResolver} from './resolver/todo-list.resolver';
+import {TodoEditElementComponent} from './components/todo-edit-element/todo-edit-element.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       {path: '', component: TodoListComponent},
       {path: 'add', component: TodoAddElementComponent},
+      {path: ':id/edit', component: TodoEditElementComponent, resolve: {todoElement: TodoElementResolver}},
       {path: ':id', component: TodoShowElementComponent, resolve: {todoElement: TodoElementResolver}},
     ]
   }
