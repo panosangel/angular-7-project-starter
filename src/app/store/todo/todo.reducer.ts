@@ -29,6 +29,18 @@ export function todoReducer(state = initialState, action: todoActions.TodoAction
       };
     }
 
+    case todoActions.EDIT_TODO_RESPONSE: {
+      return {
+        ...state,
+        list: state.list.map(item => {
+          if (item.id === action.todo.id) {
+            return action.todo;
+          }
+          return item;
+        })
+      };
+    }
+
     case todoActions.DELETE_TODO_RESPONSE: {
       return {
         ...state,
