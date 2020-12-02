@@ -31,4 +31,11 @@ For that reason some services are mocked as noted in the comments of the table a
 
 **Caution:** The returned object has always id = n+1 from the initial list count and in that case it's always 201 no matter how many new entries we have. 
 
+## Future developments
 
+- Use Angular 10+
+- Use Angular Material UI
+- Fully functional (local!?) backend
+- Proper authentication mechanism
+- Usu ngx-datatable for the table
+- Proper error handling across the application
