@@ -37,10 +37,7 @@ export class AuthEffects {
             new authActions.LoginFailure()
           ]))
         );
-    }),
-    catchError((reject) => ([
-      new authActions.RequestFailure()
-    ]))
+    })
   );
 
   @Effect({dispatch: false})

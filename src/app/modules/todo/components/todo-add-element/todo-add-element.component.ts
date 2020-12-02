@@ -26,10 +26,9 @@ export class TodoAddElementComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const req = new Todo({
-      id: form.value.id,
       userId: form.value.userId,
       title: form.value.title,
-      checked: form.value.checked,
+      completed: form.value.completed,
     });
     this.store.dispatch(new todoActions.AddTodoRequest(req));
   }

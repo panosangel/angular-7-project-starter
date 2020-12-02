@@ -6,6 +6,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run the project with `npm start`
 
+## Login Credentials
+
+**username**: Panos  
+**password**: t^2Yvg8!bbUPWJHq
+
 ## API
 
 BaseUrl: https://jsonplaceholder.typicode.com
@@ -24,6 +29,13 @@ As a result, querying id's (`GET /todos/:todoId`) _over_ the range of [1-200] re
 
 For that reason some services are mocked as noted in the comments of the table above to avoid inconsistencies.
 
-**Caution:** The returned object has always id n+1 from the initial list and in that case it's always 201 no matter how many new entries we have. 
+**Caution:** The returned object has always id = n+1 from the initial list count and in that case it's always 201 no matter how many new entries we have. 
 
+## Future developments
 
+- Use Angular 10+
+- Use Angular Material UI
+- Fully functional (local!?) backend
+- Proper authentication mechanism
+- Usu ngx-datatable for the table
+- Proper error handling across the application
