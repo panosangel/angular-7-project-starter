@@ -23,6 +23,10 @@ export class TodoService {
     return this.httpClient.get<Todo>(`${this.baseUrl}/${id}`);
   }
 
+  addTodo(todo: Todo) {
+    return this.httpClient.post<Todo>(`${this.baseUrl}`, todo);
+  }
+
   deleteTodoById(id: number) {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }

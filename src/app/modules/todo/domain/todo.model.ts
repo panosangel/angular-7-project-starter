@@ -3,4 +3,8 @@ export class Todo {
   userId: number;
   title: string;
   completed: boolean;
+
+  constructor(props = {}) {
+    Object.assign(this, props);
+  }
 }

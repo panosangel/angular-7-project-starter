@@ -22,6 +22,13 @@ export function todoReducer(state = initialState, action: todoActions.TodoAction
       };
     }
 
+    case todoActions.ADD_TODO_RESPONSE: {
+      return {
+        ...state,
+        list: [...state.list, action.todo]
+      };
+    }
+
     case todoActions.DELETE_TODO_RESPONSE: {
       return {
         ...state,
