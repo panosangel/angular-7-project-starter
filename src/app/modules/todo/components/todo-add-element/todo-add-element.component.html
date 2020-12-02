@@ -1,3 +1,49 @@
-<p>
-  todo-add-element works!
-</p>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-group">
+    <div class="form-group">
+      <label for="idInput">ID</label>
+      <input
+        type="text"
+        class="form-control"
+        id="idInput"
+        placeholder="Enter a UNIQUE id"
+        ngModel
+        name="id"
+      >
+    </div>
+    <label for="userIdInput">User ID</label>
+    <input
+      type="text"
+      class="form-control"
+      id="userIdInput"
+      placeholder="Enter user ID"
+      ngModel
+      name="userId"
+    >
+  </div>
+  <div class="form-group">
+    <label for="titleInput">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="titleInput"
+      placeholder="Such a great element needs a creative title"
+      ngModel
+      name="title"
+    >
+  </div>
+  <div class="form-group form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="completedCheck"
+      ngModel
+      name="checked"
+    >
+    <label class="form-check-label" for="completedCheck">Completed</label>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success float-left">Add element</button>
+    <button type="button" class="btn btn-primary float-right">Go to list</button>
+  </div>
+</form>
