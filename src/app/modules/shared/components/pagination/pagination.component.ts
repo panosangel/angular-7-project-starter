@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import {Pagination} from '../../domain/pagination.model';
 
@@ -7,7 +7,7 @@ import {Pagination} from '../../domain/pagination.model';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent implements OnInit, OnChanges {
+export class PaginationComponent implements OnInit {
   @Input() pagination: Pagination = new Pagination();
   @Output() pageChanged = new EventEmitter<number>();
 
@@ -15,11 +15,6 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-  }
-
-  ngOnChanges() {
-    // todo: remove
-    console.log(this.pagination);
   }
 
   hasNextPage() {
