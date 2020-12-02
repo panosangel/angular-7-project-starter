@@ -1,11 +1,12 @@
 import {HttpClient} from '@angular/common/http';
+import {delay, map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 
+import {selectTodoList} from '../../../store/todo/todo.selector';
 import {AppState} from '../../../store/state.model';
 import {Todo} from '../domain/todo.model';
-import {selectTodoList} from '../../../store/todo/todo.selector';
-import {delay, map} from 'rxjs/operators';
 
 @Injectable()
 export class TodoService {
@@ -35,6 +36,13 @@ export class TodoService {
 
   addTodo(todo: Todo) {
     return this.httpClient.post<Todo>(`${this.baseUrl}`, todo);
+  }
+
+  editTodo(todo: Todo) {
+    // return this.httpClient.put<Todo>(`${this.baseUrl}/${todo.id}`, todo);
+
+    // Please see README
+    return Observable.create((observer) => observer.next(todo)).pipe(delay(10));
   }
 
   deleteTodoById(id: number) {
