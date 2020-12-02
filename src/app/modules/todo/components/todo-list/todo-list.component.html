@@ -1,6 +1,11 @@
 <h1>List of Todos</h1>
 <nav class="navbar navbar-light bg-light">
-  <form class="form-inline navbar-nav ml-auto">
+  <form class="form-inline navbar-nav mr-auto">
+    <div class="form-group">
+      <button type="button" class="btn btn-primary btn-sm" [routerLink]="'add'">Add Element</button>
+    </div>
+  </form>
+  <form class="form-inline navbar-nav">
     <div class="form-group">
       <label for="pageSizeSelector">Page size</label>
       <select
