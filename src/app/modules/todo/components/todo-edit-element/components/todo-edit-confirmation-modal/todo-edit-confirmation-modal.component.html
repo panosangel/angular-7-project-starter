@@ -1,0 +1,18 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Warning!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-primary" role="alert">
+      You have unsaved changes. Are you sure you want to return exit?
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-auto" (click)="closeModal()">Stay</button>
+    <button type="button" class="btn btn-outline-warning" (click)="goBack()">Disregard Changes & Exit</button>
+  </div>
+</ng-template>
+

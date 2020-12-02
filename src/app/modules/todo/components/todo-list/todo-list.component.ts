@@ -76,6 +76,10 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.router.navigate([elementId], {relativeTo: this.route});
   }
 
+  editElement(elementId: number) {
+    this.router.navigate([elementId, 'edit'], {relativeTo: this.route});
+  }
+
   deleteElement(elementId: number) {
     this.store.dispatch(new todoActions.DeleteTodoRequest(elementId));
   }

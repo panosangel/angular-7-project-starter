@@ -2,12 +2,12 @@ import {Actions, Effect, ofType} from '@ngrx/effects';
 import {catchError, switchMap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {from} from 'rxjs';
 
 import {TodoService} from '../../modules/todo/service/todo.service';
+import {Todo} from '../../modules/todo/domain/todo.model';
 import * as todoActions from './todo.actions';
 import {AppState} from '../state.model';
-import {selectTodoList} from './todo.selector';
-import {from} from 'rxjs';
 
 @Injectable()
 export class TodoEffects {
@@ -35,19 +35,11 @@ export class TodoEffects {
   getTodo = this.actions$.pipe(
     ofType(todoActions.GET_TODO_REQUEST),
     switchMap((action: todoActions.GetTodoRequest) => {
-      // Due to inconsistencies with locally altered elements we mock the response
-      const elementList$ = this.store.select(selectTodoList);
-      let mockedElement;
-      elementList$.subscribe(todos => {
-        mockedElement = todos.filter(element => {
-          return element.id === action.todoId;
-        })[0];
-      });
       return this.todoService.getTodoById(action.todoId)
         .pipe(
           switchMap((todo) => {
             return from([
-              new todoActions.GetTodoResponse(mockedElement)
+              new todoActions.GetTodoResponse(todo)
             ]);
           })
         );
@@ -65,6 +57,19 @@ export class TodoEffects {
         .pipe(
           switchMap(todo => ([
             new todoActions.AddTodoResponse(todo)
+          ]))
+        );
+    })
+  );
+
+  @Effect()
+  editTodo = this.actions$.pipe(
+    ofType(todoActions.EDIT_TODO_REQUEST),
+    switchMap((action: todoActions.EditTodoRequest) => {
+      return this.todoService.editTodo(action.todo)
+        .pipe(
+          switchMap((todo: Todo) => ([
+            new todoActions.EditTodoResponse(todo)
           ]))
         );
     })
