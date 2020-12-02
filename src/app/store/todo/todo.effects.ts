@@ -63,6 +63,19 @@ export class TodoEffects {
   );
 
   @Effect()
+  editTodo = this.actions$.pipe(
+    ofType(todoActions.EDIT_TODO_REQUEST),
+    switchMap((action: todoActions.EditTodoRequest) => {
+      return this.todoService.editTodo(action.todo)
+        .pipe(
+          switchMap((todo: Todo) => ([
+            new todoActions.EditTodoResponse(todo)
+          ]))
+        );
+    })
+  );
+
+  @Effect()
   deleteTodo = this.actions$.pipe(
     ofType(todoActions.DELETE_TODO_REQUEST),
     switchMap((action: todoActions.DeleteTodoRequest) => {
