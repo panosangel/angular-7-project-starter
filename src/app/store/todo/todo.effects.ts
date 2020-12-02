@@ -41,12 +41,12 @@ export class TodoEffects {
             return from([
               new todoActions.GetTodoResponse(todo)
             ]);
-          })
+          }),
+          catchError((reject) => ([
+            new todoActions.RequestFailure()
+          ]))
         );
-    }),
-    catchError((reject) => ([
-      new todoActions.RequestFailure()
-    ]))
+    })
   );
 
   @Effect()
@@ -57,6 +57,9 @@ export class TodoEffects {
         .pipe(
           switchMap(todo => ([
             new todoActions.AddTodoResponse(todo)
+          ])),
+          catchError((reject) => ([
+            new todoActions.RequestFailure()
           ]))
         );
     })
@@ -70,6 +73,9 @@ export class TodoEffects {
         .pipe(
           switchMap((todo: Todo) => ([
             new todoActions.EditTodoResponse(todo)
+          ])),
+          catchError((reject) => ([
+            new todoActions.RequestFailure()
           ]))
         );
     })
@@ -83,11 +89,11 @@ export class TodoEffects {
         .pipe(
           switchMap(res => ([
             new todoActions.DeleteTodoResponse(action.todoId)
+          ])),
+          catchError((reject) => ([
+            new todoActions.RequestFailure()
           ]))
         );
-    }),
-    catchError((reject) => ([
-      new todoActions.RequestFailure()
-    ]))
+    })
   );
 }
