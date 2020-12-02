@@ -29,7 +29,7 @@ export class TodoAddElementComponent implements OnInit {
       id: form.value.id,
       userId: form.value.userId,
       title: form.value.title,
-      checked: form.value.checked,
+      completed: form.value.completed,
     });
     this.store.dispatch(new todoActions.AddTodoRequest(req));
   }
