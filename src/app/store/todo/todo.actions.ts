@@ -6,6 +6,8 @@ export const GET_LIST_REQUEST = '[Todo] GetListRequest';
 export const GET_LIST_RESPONSE = '[Todo] GetListResponse';
 export const GET_TODO_REQUEST = '[Todo] GetTodoRequest';
 export const GET_TODO_RESPONSE = '[Todo] GetTodoResponse';
+export const ADD_TODO_REQUEST = '[Todo] AddTodoRequest';
+export const ADD_TODO_RESPONSE = '[Todo] AddTodoResponse';
 export const DELETE_TODO_REQUEST = '[Todo] DeleteTodoRequest';
 export const DELETE_TODO_RESPONSE = '[Todo] DeleteTodoResponse';
 export const CLEAR_CURRENT_TODO = '[Todo] ClearCurrentTodo';
@@ -31,6 +33,20 @@ export class GetTodoRequest implements Action {
 
 export class GetTodoResponse implements Action {
   readonly type = GET_TODO_RESPONSE;
+
+  constructor(public todo: Todo) {
+  }
+}
+
+export class AddTodoRequest implements Action {
+  readonly type = ADD_TODO_REQUEST;
+
+  constructor(public todo: Todo) {
+  }
+}
+
+export class AddTodoResponse implements Action {
+  readonly type = ADD_TODO_RESPONSE;
 
   constructor(public todo: Todo) {
   }
@@ -62,6 +78,8 @@ export type TodoActions = GetListRequest
   | GetListResponse
   | GetTodoRequest
   | GetTodoResponse
+  | AddTodoRequest
+  | AddTodoResponse
   | DeleteTodoRequest
   | DeleteTodoResponse
   | ClearCurrentTodo
