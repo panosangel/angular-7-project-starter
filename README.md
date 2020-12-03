@@ -13,7 +13,7 @@ Run the project with `npm start`
 
 ## API
 
-BaseUrl: https://jsonplaceholder.typicode.com
+Base Url: https://jsonplaceholder.typicode.com
 
 | Method  | Resource         | Comments
 | ---     | ---              | ---
@@ -25,11 +25,11 @@ BaseUrl: https://jsonplaceholder.typicode.com
 
 The free `jsonplaceholder` service does not support for remote alteration of the data, as expected.
   
-As a result, querying id's (`GET /todos/:todoId`) _over_ the range of [1-200] returns 404. Also, calls  _in_ the range return the original item and not the locally altered one.  
+As a result, querying id's _over_ the range of [1-200] returns 404. Also, calls  _in_ the range return the original item and not the locally altered one.  
 
-For that reason some services are mocked as noted in the comments of the table above to avoid inconsistencies.
+For that reason some services are mocked as noted in the comments of the table above and the code to avoid inconsistencies.
 
-**Caution:** The returned object has always id = n+1 from the initial list count and in that case it's always 201 no matter how many new entries we have. 
+**Caution:** A newly created object has always id = n+1 from the initial list count and in that case it's always 201 no matter how many new entries we have. 
 
 ## Future developments
 
