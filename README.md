@@ -8,8 +8,8 @@ Run the project with `npm start`
 
 ## Login Credentials
 
-**username**: Panos  
-**password**: t^2Yvg8!bbUPWJHq
+**username**: panos  
+**password**: 12345
 
 ## API
 

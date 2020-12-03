@@ -4,8 +4,8 @@ import {of} from 'rxjs';
 import {LoginAuthRequest} from '../domain/auth.model';
 
 const credsToLogin = {
-  username: 'Panos',
-  password: 't^2Yvg8!bbUPWJHq'
+  username: 'panos',
+  password: '12345'
 };
 
 @Injectable()
